@@ -14,13 +14,13 @@ env:
     - DB=sqlite
   global:
     - BUNDLE_JOBS=4
-    - LC_ALL=en_US.UTF-8
-    - LANG=en_US.UTF-8
 matrix:
   allow_failures:
     - rvm: rbx-2
 
 before_install:
+  - echo $LANG
+  - echo $LC_ALL
   - ruby ci/copy_database_config.rb
 install: bundle install --retry=3
 
