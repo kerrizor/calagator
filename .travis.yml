@@ -9,16 +9,15 @@ rvm:
   # - jruby-19mode
   # - jruby-head
 env:
-  matrix:
-    - DB=postgresql
   global:
+    - DB=postgresql
     - BUNDLE_JOBS=4
 matrix:
   allow_failures:
     - rvm: rbx-2
 
 before_install:
-  - gem update bundler
+  - gem install bundler -v '>= 1.7.7'
   - bundler --version
   - ruby ci/copy_database_config.rb
 install: bundle install --retry=3 --jobs=4
